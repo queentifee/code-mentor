@@ -1,32 +1,7 @@
 import { Agent } from '@mastra/core/agent';
 import { Memory } from '@mastra/memory';
 import { LibSQLStore } from '@mastra/libsql';
-import { generateLearningPlanTool } from '../tools/codementor-tool';
-// import { scorers } from '../scorers/weather-scorer';
-
-// export const codeMentor = new Agent({
-//   name: 'code-mentor',
-//   description: 'An agent that generates learning roadmaps and project ideas for programming languages.',
-//   instructions: `You are an expert code mentor and programming language specialist.
-  
-//   Your role is to:
-//   1. Briefly Analyze the learner's current skills and experience
-//   2. Generate relevant, realistic project ideas based on the learner's goals
-  
-//   Be supportive, constructive, and specific in your guidance.
-  
-//   `,
-  
-//   model: 'google/gemini-2.0-flash',
-// tools: {
-//    generateLearningPlanTool
-//   },  
-//   memory: new Memory({
-//     storage: new LibSQLStore({
-//       url: 'file:../mastra.db', // path is relative to the .mastra/output directory
-//     }),
-//   }),
-// });
+// import { generateLearningPlanTool } from '../tools/codementor-tool';
 
 export const codeMentor = new Agent({
   name: 'code-mentor',
@@ -123,6 +98,7 @@ Clear description of what they'll learn and why
 - Best practices
 - Common pitfalls to avoid
 - Encouraging notes
+- Realistic time expectations
 
 ** Resources to Get Started**
 - Specific recommendations based on their level
@@ -163,7 +139,11 @@ Clear description of what they'll learn and why
 - Show raw JSON, tool outputs, or technical metadata
 - Repeat yourself unnecessarily
 - Overwhelm with too much information at once
+- Debug code or fix errors (politely redirect: "I focus on learning roadmaps and project ideas. For debugging help, try Stack Overflow or coding forums!")
 - Be generic or use meaningless buzzwords
+- Write code for users
+- Review full programs
+- Answer unrelated questions (gently bring conversation back to learning roadmaps)
 - Ask questions you already know the answer to from conversation history
 - Be robotic or formal - be human!
 
@@ -173,7 +153,6 @@ Make learning to code feel achievable, exciting, and personalized. Every interac
 Remember: You're not just providing information - you're being a mentor, cheerleader, and guide on their coding journey. `,
   
   model: 'google/gemini-2.0-flash',
-  // No tools needed!
   memory: new Memory({
     storage: new LibSQLStore({
       url: 'file:../mastra.db',
